@@ -28,25 +28,6 @@ function initial_board(){
   $board[55] = TYPE_WHITE;
   return $board;
 }
-/** @return string */
-function print_board($board){
-  $res = '';
-  $res .= '    '.join('  ', range(1, 8))."\n";
-  foreach (range(1, 8) as $j) {
-    $res .= $j.'0 ';
-    foreach (range(1, 8) as $i) {
-      $square = $board[$j*10+$i];
-      if($square == TYPE_EMPTY){
-        // $res .= "$j$i ";
-        $res .= ' '.RENDER_TYPES_ASCII[TYPE_EMPTY].' ';
-      } else {
-        $res .= ' '.RENDER_TYPES_ASCII[$square].' ';
-      }
-    }
-    $res .= "\n";
-  }
-  return $res;
-}
 /** find outer square of a given square @return int|null */
 function find_bracket($square, $player, $board, $direction){
   $bracket = $square + $direction;
@@ -113,4 +94,22 @@ function make_flips($square, $player, &$board, $direction){
     $board[$square] = $player;
     $square += $direction;
   }
+}
+/** @return type|null */
+function next_player($board, $prev_player){
+  $opponent = opponent($prev_player);
+  if(any_legal_move($opponent, $board)){
+    return $opponent;
+  } elseif(any_legal_move($prev_player, $board)){
+    return $prev_player;
+  }
+  return;
+}
+/** @return array [TYPE_EMPTY=>int, TYPE_BLACK=>int, TYPE_WHITE=>int] */
+function score($board){
+  $score = [TYPE_EMPTY=>0, TYPE_BLACK=>0, TYPE_WHITE=>0];
+  foreach (ALL_SQUARES as $sq) {
+    $score[$board[$sq]]++;
+  }
+  return $score;
 }
