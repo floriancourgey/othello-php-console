@@ -44,9 +44,10 @@ Each integer is converted to an ascii symbol for improved readability. Where '.'
 ?........?
 ??????????`
 
-# Vocabulary for moves
+# Vocabulary
 A "valid" move is a move within the board, between 11 and 88.
 A "legal" move for a given player is a move that forms a "bracket" with another piece of this player. E.g. with the line '11 12 @ o o o 17 18', '17' is a legal move for Black (resulting in 3 "flips") and '12' is a legal move for White (resulting in 1 "flip").
+A "ply" is a turn taken by one player (see https://en.wikipedia.org/wiki/Ply_(game_theory)).
 
 # Run tests
 ```bash

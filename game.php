@@ -19,7 +19,10 @@ function strategy_random($player, $board){
 function play($black_strategy, $white_strategy){
   $board = initial_board();
   $player = FIRST_TO_PLAY;
+  $ply = 0;
   while($player){
+    $ply++;
+    echo "- Ply $ply\n";
     echo print_board($board);
     echo RENDER_TYPES_HUMAN[$player]." to play. Available moves: ";
     echo '['.join(', ', legal_moves($player, $board))."]\n";
