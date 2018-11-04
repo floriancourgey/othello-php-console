@@ -12,8 +12,11 @@ define('ALL_DIRECTIONS', [
     9,  10,  11,
 ]);
 define('ALL_SQUARES', array_filter(range(11, 88), function($var){return ($var%10>=1) && ($var%10<=8);}) );
+/** @return type */
 function opponent($type){return $type == TYPE_BLACK ? TYPE_WHITE : TYPE_BLACK; }
+/** @return bool */
 function is_valid($i){return is_int($i) && in_array($i, ALL_SQUARES);}
+/** @return board */
 function initial_board(){
   $board = array_fill(0, 100, TYPE_OUTER);
   foreach (ALL_SQUARES as $i) {
@@ -25,6 +28,7 @@ function initial_board(){
   $board[55] = TYPE_WHITE;
   return $board;
 }
+/** @return string */
 function print_board($board){
   $res = '';
   $res .= '    '.join('  ', range(1, 8))."\n";
@@ -33,7 +37,8 @@ function print_board($board){
     foreach (range(1, 8) as $i) {
       $square = $board[$j*10+$i];
       if($square == TYPE_EMPTY){
-        $res .= "$j$i ";
+        // $res .= "$j$i ";
+        $res .= ' '.RENDER_TYPES_ASCII[TYPE_EMPTY].' ';
       } else {
         $res .= ' '.RENDER_TYPES_ASCII[$square].' ';
       }
@@ -57,6 +62,7 @@ function find_bracket($square, $player, $board, $direction){
   }
   return $bracket;
 }
+/** @return bool */
 function is_legal($square, $player, $board){
   if($board[$square] != TYPE_EMPTY){
     return false;
@@ -69,6 +75,7 @@ function is_legal($square, $player, $board){
   }
   return false;
 }
+/** @return array */
 function legal_moves($player, $board){
   $legal_moves = [];
   foreach (ALL_SQUARES as $sq) {
@@ -78,6 +85,7 @@ function legal_moves($player, $board){
   }
   return $legal_moves;
 }
+/** @return bool */
 function any_legal_move($player, $board){
   foreach (ALL_SQUARES as $square) {
     if(is_legal($square, $player, $board)){
@@ -86,6 +94,7 @@ function any_legal_move($player, $board){
   }
   return false;
 }
+/** @return board */
 function make_move($square, $player, &$board){
   $board[$square] = $player;
   foreach (ALL_DIRECTIONS as $direction) {
@@ -93,6 +102,7 @@ function make_move($square, $player, &$board){
   }
   return $board;
 }
+/** @return null */
 function make_flips($square, $player, &$board, $direction){
   $bracket = find_bracket($square, $player, $board, $direction);
   if(!$bracket){
