@@ -4,9 +4,9 @@ php game.php
 ```
 
 # Preface
-- PAIP https://github.com/norvig/paip-lisp/blob/master/docs/chapter18.md
-- Python 1 http://dhconnelly.com/paip-python/docs/paip/othello.html
-- Python 2 https://github.com/marmelab/reversi.py/
+- PAIP https://github.com/norvig/paip-lisp/blob/master/docs/chapter18.md (PAIP 11-88 theory)
+- Python 1 http://dhconnelly.com/paip-python/docs/paip/othello.html (PAIP 11-88 implementation)
+- Python 2 https://github.com/marmelab/reversi.py/ (Matrix implementation)
 
 # Convention
 The board is a 1 dimension array of 100 integers from 0 to 99, following the PAIP board convention for Othello:
@@ -44,10 +44,19 @@ Each integer is converted to an ascii symbol for improved readibility. Where '.'
 ??????????`
 
 # Vocabulary for moves
-A valid move is a move in the board, between 11 and 88.
-A legal move for a player is a move that forms a "bracket" with another piece of same color: Given the line '11 12 @ o o o 17 18', '17' is a legal move for Black (resulting in 3 flips) and '12' is a legal move for White (resulting in 1 flip).
+A "valid" move is a move within the board, between 11 and 88.
+A "legal" move for a given player is a move that forms a "bracket" with another piece of this player. E.g. with the line '11 12 @ o o o 17 18', '17' is a legal move for Black (resulting in 3 "flips") and '12' is a legal move for White (resulting in 1 "flip").
 
 # Run tests
 ```bash
 php test.php
 ```
+
+# Todo
+- X create and display board
+- X make valid moves and flip pieces
+- X create a game with player VS player (strategy_ask)
+- X create a game with player VS bot (strategy_random)
+- display score
+- display winner
+- port it to online with HTML and PHP session
