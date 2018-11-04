@@ -9,18 +9,19 @@ php game.php
 - Python 2 https://github.com/marmelab/reversi.py/ (Matrix implementation)
 
 # Convention
-The board is a 1 dimension array of 100 integers from 0 to 99, following the PAIP board convention for Othello:
+The board is a 1 dimension array of 100 integers from 0 to 99, with playable squares from 11 to 88, following the PAIP board convention for Othello:
 - 0 for an empty square
 - 1 for a black piece
 - 2 for a white piece
 - 3 for the outer border
 Handling single integers instead of XY coordinates (`$board[x][y]`) or objects (`$square->x $square->y`) saves space for efficiency.
-To access the first square of the first line, use `board[11]`. For the second square of the first line, use `$board[12]`. Thus, legal squares are in the range 11-88.
-Having the outer border makes it easy to compute neighbors, with directions as integers:
+To access the first square of the first line, use `board[11]`. For the second square of the first line, use `$board[12]`. Thus, playable squares are in the range 11-88.
+Having the outer border simplifies the detection of out-of-board moves.
+Also, it makes it easy to compute neighbors, with directions as integers:
 - West=-1, East=+1, North=-10, South=+10
 - NW=-11, NE=-9, SW=+9, SE=+11
 East of `$board[11]` is `$board[11+1]` = `$board[12]`.
-This gives us the following representation of the board:
+This gives us the following representation of the initial board:
 `3333333333
 3000000003
 3000000003
@@ -31,7 +32,7 @@ This gives us the following representation of the board:
 3000000003
 3000000003
 3333333333`
-Each integer is converted to an ascii symbol for improved readibility. Where '.' is empty, '@' is black, 'o' is white and '?' is border:
+Each integer is converted to an ascii symbol for improved readability. Where '.' is empty, '@' is black, 'o' is white and '?' is border:
 `??????????
 ?........?
 ?........?
