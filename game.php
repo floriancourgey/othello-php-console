@@ -10,6 +10,7 @@ function strategy_ask($player, $board){
   }
   return $move;
 }
+
 function strategy_random($player, $board){
   $legal_moves = legal_moves($player, $board);
   return $legal_moves[array_rand($legal_moves)];
@@ -17,7 +18,7 @@ function strategy_random($player, $board){
 
 function play($black_strategy, $white_strategy){
   $board = initial_board();
-  $player = TYPE_BLACK;
+  $player = FIRST_TO_PLAY;
   while($player){
     echo print_board($board);
     echo RENDER_TYPES_HUMAN[$player]." to play. Available moves: ";

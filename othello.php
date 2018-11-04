@@ -5,7 +5,6 @@ define('TYPE_WHITE', 2);
 define('TYPE_OUTER', 3);
 define('RENDER_TYPES_ASCII', '.@o?');
 define('RENDER_TYPES_HUMAN', [1=>'Black', 2=>'White']);
-define('PLAYABLE_TYPES', [TYPE_BLACK, TYPE_WHITE]);
 define('FIRST_TO_PLAY', TYPE_BLACK);
 define('ALL_DIRECTIONS', [
   -11, -10,  -9,
