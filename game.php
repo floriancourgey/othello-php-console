@@ -1,5 +1,5 @@
 <?php
-require_once('othello.php');
+require_once('othello_lib.php');
 
 /** @return int */
 function strategy_ask($player, $board){

@@ -1,5 +1,5 @@
 <?php
-require_once('othello.php');
+require_once('othello_lib.php');
 
 assert(count(ALL_SQUARES) == 64);
 assert(min(ALL_SQUARES) == 11);
