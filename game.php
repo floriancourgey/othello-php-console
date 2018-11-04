@@ -42,4 +42,6 @@ function next_player($board, $prev_player){
   return;
 }
 
-play('strategy_ask', 'strategy_random');
+$strategies = ['strategy_ask', 'strategy_random'];
+shuffle($strategies);
+play($strategies[0], $strategies[1]);
