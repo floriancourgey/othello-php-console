@@ -1,20 +1,53 @@
 # Run
 ```bash
-php index.php
+php game.php
 ```
 
-# Convention
-`board` is an array containing all current game settings. `board['cells']` is a 2 dimensions array containing strings (black, white or empty).
-A cell is accessed via `board[j][i]` where `j` is the row index and `i` the column index.
-In the code (for loops, function parameters, URLs..), j will always come before i.
+# Preface
+- PAIP https://github.com/norvig/paip-lisp/blob/master/docs/chapter18.md
+- Python 1 http://dhconnelly.com/paip-python/docs/paip/othello.html
+- Python 2 https://github.com/marmelab/reversi.py/
 
-# Board structure
-Board is persisted across session via standard PHP session serialization, and contains the following:
-{
-  id: 'sha1'
-  cells: []
-  lastTurn: Datetime
-  botPlay: ['j'=> 1, 'i'=> 2]
-  playerType: 'black|white'
-  botType: 'black|white'
-}
+# Convention
+The board is a 1 dimension array of 100 integers from 0 to 99, following the PAIP board convention for Othello:
+- 0 for an empty square
+- 1 for a black piece
+- 2 for a white piece
+- 3 for the outer border
+Handling single integers instead of XY coordinates (`$board[x][y]`) or objects (`$square->x $square->y`) saves space for efficiency.
+To access the first square of the first line, use `board[11]`. For the second square of the first line, use `$board[12]`. Thus, legal squares are in the range 11-88.
+Having the outer border makes it easy to compute neighbors, with directions as integers:
+- West=-1, East=+1, North=-10, South=+10
+- NW=-11, NE=-9, SW=+9, SE=+11
+East of `$board[11]` is `$board[11+1]` = `$board[12]`.
+This gives us the following representation of the board:
+`3333333333
+3000000003
+3000000003
+3000000003
+3000210003
+3000120003
+3000000003
+3000000003
+3000000003
+3333333333`
+Each integer is converted to an ascii symbol for improved readibility. Where '.' is empty, '@' is black, 'o' is white and '?' is border:
+`??????????
+?........?
+?........?
+?........?
+?...o@...?
+?...@o...?
+?........?
+?........?
+?........?
+??????????`
+
+# Vocabulary for moves
+A valid move is a move in the board, between 11 and 88.
+A legal move for a player is a move that forms a "bracket" with another piece of same color: Given the line '11 12 @ o o o 17 18', '17' is a legal move for Black (resulting in 3 flips) and '12' is a legal move for White (resulting in 1 flip).
+
+# Run tests
+```bash
+php test.php
+```
