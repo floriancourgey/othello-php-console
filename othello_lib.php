@@ -67,7 +67,7 @@ function legal_moves($player, $board){
   return $legal_moves;
 }
 /** @return bool */
-function any_legal_move($player, $board){
+function has_any_legal_move($player, $board){
   foreach (ALL_SQUARES as $square) {
     if(is_legal($square, $player, $board)){
       return true;
@@ -98,9 +98,9 @@ function make_flips($square, $player, &$board, $direction){
 /** @return type|null */
 function next_player($board, $prev_player){
   $opponent = opponent($prev_player);
-  if(any_legal_move($opponent, $board)){
+  if(has_any_legal_move($opponent, $board)){
     return $opponent;
-  } elseif(any_legal_move($prev_player, $board)){
+  } elseif(has_any_legal_move($prev_player, $board)){
     return $prev_player;
   }
   return;
