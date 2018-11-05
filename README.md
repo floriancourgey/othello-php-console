@@ -76,4 +76,4 @@ php test.php
 - [x] create a game with player VS bot (strategy_random)
 - [x] display score
 - [x] display winner
-- [ ] port it to online with HTML and PHP session
+- [x] port it to online with HTML and PHP session, see https://github.com/floriancourgey/othello-php-online
