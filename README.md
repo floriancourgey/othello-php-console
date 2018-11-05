@@ -8,6 +8,7 @@ php game.php
 ## Preface
 - Wikipedia Othello https://en.wikipedia.org/wiki/Reversi
 - Wikipedia Othello by computers https://en.wikipedia.org/wiki/Computer_Othello
+- NTest https://en.wikipedia.org/wiki/NTest
 - PAIP https://github.com/norvig/paip-lisp/blob/master/docs/chapter18.md (PAIP 11-88 theory)
 - Python 1 http://dhconnelly.com/paip-python/docs/paip/othello.html (PAIP 11-88 implementation)
 - Python 2 https://github.com/marmelab/reversi.py/ (Matrix implementation)
