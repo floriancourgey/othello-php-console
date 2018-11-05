@@ -64,6 +64,8 @@ A "legal" move for a given player is a move that forms a "bracket" with another 
 
 A "ply" is a turn taken by one player (see https://en.wikipedia.org/wiki/Ply_(game_theory)).
 
+A "player" is either a bot or a human.
+
 ## Run tests
 ```bash
 php test.php
